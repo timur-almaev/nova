@@ -153,7 +153,7 @@ namespace ssi
         public List<AnnoTierLabel> segments = new List<AnnoTierLabel>();
 
         private double currentPositionX = 0;
-        public bool isDiscreteOrFree = true;
+        public AnnoScheme.TYPE currentAnnoType = AnnoScheme.TYPE.FREE;
 
         public int lastLabelIndex;
         public string DefaultLabel = "";
@@ -180,9 +180,17 @@ namespace ssi
             AnnoList = anno;
 
             AllowDrop = true;            
-            SizeChanged += new SizeChangedEventHandler(sizeChanged);           
-            isDiscreteOrFree = anno.Scheme.Type == AnnoScheme.TYPE.DISCRETE || anno.Scheme.Type == AnnoScheme.TYPE.FREE;
+            SizeChanged += new SizeChangedEventHandler(sizeChanged);
 
+            if (anno.Scheme.Type == AnnoScheme.TYPE.DISCRETE || anno.Scheme.Type == AnnoScheme.TYPE.FREE)
+            {
+                currentAnnoType = AnnoScheme.TYPE.FREE;
+            }
+            else
+            {
+                currentAnnoType = AnnoScheme.TYPE.CONTINUOUS;
+            }
+            
             UnDoObject = new AnnoTierUndoRedo();
             UnDoObject.Container = this;
 
@@ -220,7 +228,7 @@ namespace ssi
 
             AnnoTier.SelectTier(this);
 
-            if (!isDiscreteOrFree)
+            if (!(currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE))
             {
                 Loaded += delegate
                 {
@@ -264,7 +272,7 @@ namespace ssi
             {
                 AnnoScheme.Label l = new AnnoScheme.Label(item.Label, item.Color);
 
-                if (isDiscreteOrFree)
+                if (currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE)
                 {
                     addSegment(item);
                 }
@@ -344,14 +352,14 @@ namespace ssi
             {
                 if (BackgroundBrush != null)
                 {
-                    if (this.isDiscreteOrFree)
+                    if (this.currentAnnoType == AnnoScheme.TYPE.FREE || this.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
                     {
                         byte newAlpha = 100;
                         Color newColor = Color.FromArgb(newAlpha, ((SolidColorBrush)BackgroundBrush).Color.R, ((SolidColorBrush)BackgroundBrush).Color.G, ((SolidColorBrush)BackgroundBrush).Color.B);
                         Brush brush = new SolidColorBrush(newColor);
                         this.Background = brush;
                     }
-                    else if (ContinuousBrush != null && !isDiscreteOrFree)
+                    else if (ContinuousBrush != null && !(currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                     {
                         LinearGradientBrush myBrush = new LinearGradientBrush();
                         myBrush.StartPoint = new Point(0, 0);
@@ -365,11 +373,11 @@ namespace ssi
             }
             else
             {
-                if (BackgroundBrush != null && isDiscreteOrFree)
+                if (BackgroundBrush != null && (currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                 {
                     this.Background = BackgroundBrush;
                 }
-                else if (!isDiscreteOrFree)
+                else if (!(currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                 {
                     if (ContinuousBrush == null)
                     {
@@ -483,7 +491,7 @@ namespace ssi
             this.Children.Add(continuousTierEllipse);
 
             TimeRangeChanged(MainHandler.Time);
-            if (!isDiscreteOrFree)
+            if (!(currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE))
             {
                 TimeRangeChanged(MainHandler.Time);
             }
@@ -510,7 +518,7 @@ namespace ssi
         {
             if (!CorrectMode)
             {
-                if (isDiscreteOrFree)
+                if (currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE)
                 {
                     double start = MainHandler.Time.TimeFromPixel(MainHandler.Time.CurrentSelectPosition);
                     double stop = MainHandler.Time.CurrentPlayPosition;
@@ -544,7 +552,7 @@ namespace ssi
                     closestIndex = GetClosestContinuousIndex(closestposition);
                     closestIndexOld = closestIndex;
 
-                    if (isDiscreteOrFree && stop < MainHandler.Time.TotalDuration)
+                    if ((currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE) && stop < MainHandler.Time.TotalDuration)
                     {
                         AnnoListItem temp = new AnnoListItem(start, len, DefaultLabel, "", DefaultColor, 1.0);
                         temp.Color = DefaultColor;
@@ -648,7 +656,7 @@ namespace ssi
                 AnnoTier.SelectTier(this);
             }
 
-            if (isDiscreteOrFree || (!isDiscreteOrFree && Keyboard.IsKeyDown(Key.LeftShift)))
+            if ((currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE) || (!(currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE) && Keyboard.IsKeyDown(Key.LeftShift)))
             {
                 // check for segment selection
 
@@ -704,7 +712,7 @@ namespace ssi
                 closestIndex = GetClosestContinuousIndex(closestposition);
                 closestIndexOld = closestIndex;
 
-                if (isDiscreteOrFree && stop < MainHandler.Time.TotalDuration)
+                if ((currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE) && stop < MainHandler.Time.TotalDuration)
                 {
                     AnnoListItem temp = new AnnoListItem(start, len, this.DefaultLabel, "", this.DefaultColor);
                     AnnoList.AddSorted(temp);
@@ -723,7 +731,7 @@ namespace ssi
                     selectedLabel.Item.Duration = Math.Max(Properties.Settings.Default.DefaultMinSegmentSize, minsr);
                     selectedLabel.Item.Stop = selectedLabel.Item.Start + selectedLabel.Item.Duration;
                 }
-                else if (!isDiscreteOrFree && Keyboard.IsKeyDown(Key.LeftShift) && stop < MainHandler.Time.TotalDuration)
+                else if (!(currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE) && Keyboard.IsKeyDown(Key.LeftShift) && stop < MainHandler.Time.TotalDuration)
                 {                    
                     AnnoListItem temp = new AnnoListItem(start, len, "", "", Colors.Black);
                     AnnoTierLabel segment = new AnnoTierLabel(temp, this);
@@ -790,7 +798,7 @@ namespace ssi
             direction = (dx > 0) ? 1 : 0;
             lastX = e.GetPosition(Application.Current.MainWindow).X;
 
-            if (isDiscreteOrFree || (!isDiscreteOrFree && Keyboard.IsKeyDown(Key.LeftShift)))
+            if ((currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE) || (!(currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE) && Keyboard.IsKeyDown(Key.LeftShift)))
             {
                 if (e.RightButton == MouseButtonState.Pressed /*&& this.is_selected*/)
 
@@ -1037,7 +1045,7 @@ namespace ssi
                             closestIndexOld = closestIndex;
                             TimeRangeChanged(MainHandler.Time);
                             //  nicer drawing but slower
-                            if (!isDiscreteOrFree)
+                            if (!(currentAnnoType == AnnoScheme.TYPE.FREE || currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                             {
                                 TimeRangeChanged(MainHandler.Time);
                             }

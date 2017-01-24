@@ -14,12 +14,12 @@ namespace ssi
             AnnoTier a = AnnoTierStatic.Selected;
             if (a != null)
             {
-                if (a.isDiscreteOrFree)
+                if (a.currentAnnoType == AnnoScheme.TYPE.FREE || a.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
                 {
                     control.exportAnnoContinuousToDiscreteMenu.IsEnabled = false;
                     control.exportAnnoToSignalMenu.IsEnabled = false;
                 }
-                else if (!a.isDiscreteOrFree)
+                else
                 {
                     control.exportAnnoContinuousToDiscreteMenu.IsEnabled = true;
                     control.exportAnnoToSignalMenu.IsEnabled = true;

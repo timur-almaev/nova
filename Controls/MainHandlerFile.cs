@@ -676,7 +676,7 @@ namespace ssi
         {
           
 
-            if (AnnoTierStatic.Selected != null && !AnnoTierStatic.Selected.isDiscreteOrFree)
+            if (AnnoTierStatic.Selected != null && !(AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
             {
                 Dictionary<string, UserInputWindow.Input> input = new Dictionary<string, UserInputWindow.Input>();
                 input["labels"] = new UserInputWindow.Input() { Label = "Class labels (separated by ;)", DefaultValue = "LOW;MEDIUM;HIGH" };
@@ -949,7 +949,10 @@ namespace ssi
                 if (filepath != null)
                 {
                     var uri = new Uri(filepath);
-                    if (AnnoTierStatic.Selected.isDiscreteOrFree) AnnoTierStatic.Selected.Background = AnnoTierStatic.Selected.BackgroundBrush;
+                    if (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
+                    {
+                        AnnoTierStatic.Selected.Background = AnnoTierStatic.Selected.BackgroundBrush;
+                    }
                     AnnoTierStatic.Selected.ExportToXPS(uri, AnnoTierStatic.Selected);
                     AnnoTierStatic.Selected.select(true);
                     AnnoTierStatic.Selected.TimeRangeChanged(MainHandler.Time);
@@ -965,7 +968,10 @@ namespace ssi
                 if (filepath != null)
                 {
                     var uri = new Uri(filepath);
-                    if (AnnoTierStatic.Selected.isDiscreteOrFree) AnnoTierStatic.Selected.Background = AnnoTierStatic.Selected.BackgroundBrush;
+                    if (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
+                    {
+                        AnnoTierStatic.Selected.Background = AnnoTierStatic.Selected.BackgroundBrush;
+                    }
                     AnnoTierStatic.Selected.ExportToPng(uri, AnnoTierStatic.Selected);
                     AnnoTierStatic.Selected.select(true);
                     AnnoTierStatic.Selected.TimeRangeChanged(MainHandler.Time);

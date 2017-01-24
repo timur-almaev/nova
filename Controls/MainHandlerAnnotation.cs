@@ -258,7 +258,9 @@ namespace ssi
             annoTiers.Add(tier);
             annoLists.Add(anno);
 
-            if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.CONTINUOUS)
+            if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.CONTINUOUS || tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.POINT ||
+                tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.POLYGON || tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.GRPAH ||
+                tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.SEGMENTATION)
             {
                 tier.Background = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
                 tier.ContinuousBrush = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
@@ -347,7 +349,7 @@ namespace ssi
                 {
                     if (AnnoTierStatic.Selected != null)
                     {
-                        if (AnnoTierStatic.Selected.isDiscreteOrFree)
+                        if (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
                         {
                             ShowLabelBox();
                         }
@@ -393,7 +395,7 @@ namespace ssi
 
             if (AnnoTierStatic.Selected != null)
             {
-                if (AnnoTierStatic.Selected.isDiscreteOrFree || (!AnnoTierStatic.Selected.isDiscreteOrFree && Keyboard.IsKeyDown(Key.LeftShift)))
+                if ((AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE) || (!(AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE) && Keyboard.IsKeyDown(Key.LeftShift)))
                 {
                     double pos = e.GetPosition(control.trackGrid).X;
                     annoCursor.X = pos;

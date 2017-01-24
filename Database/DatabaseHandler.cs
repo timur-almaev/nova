@@ -242,7 +242,7 @@ namespace ssi
             var annotationschemes = database.GetCollection<BsonDocument>("AnnotationSchemes");
 
             string lowb = "", highb = "";
-            if (!annoTrack.isDiscreteOrFree)
+            if (!(annoTrack.currentAnnoType == AnnoScheme.TYPE.FREE || annoTrack.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
             {
                 lowb = annoTrack.AnnoList.Scheme.MinScore.ToString();
                 highb = annoTrack.AnnoList.Scheme.MaxScore.ToString();

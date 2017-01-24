@@ -59,6 +59,7 @@ namespace ssi
                 result.MinScore = value;
             }
             result.MinOrBackColor = colorPicker.SelectedColor.Value;
+            result.MaxOrForeColor = colorPicker.SelectedColor.Value;
 
             Close();
         }

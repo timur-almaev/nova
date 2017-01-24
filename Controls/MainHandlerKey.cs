@@ -86,7 +86,7 @@ namespace ssi
 
                 if (e.KeyboardDevice.IsKeyDown(Key.Right) && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl))
                 {
-                    if (AnnoTierStatic.Label != null && AnnoTierStatic.Selected.isDiscreteOrFree && isKeyDown == false /*&& AnnoTierStatic.Label == null*/)
+                    if (AnnoTierStatic.Label != null && (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE) && isKeyDown == false /*&& AnnoTierStatic.Label == null*/)
                     {
                         UIElement container = VisualTreeHelper.GetParent(AnnoTierStatic.Label) as UIElement;
                         Point relativeLocation = AnnoTierStatic.Label.TranslatePoint(new Point(0, 0), container);
@@ -160,7 +160,7 @@ namespace ssi
 
                 if (e.KeyboardDevice.IsKeyDown(Key.Left) && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl))
                 {
-                    if (AnnoTierStatic.Label != null && AnnoTierStatic.Selected.isDiscreteOrFree && isKeyDown == false /*&& AnnoTierStatic.Label == null*/)
+                    if (AnnoTierStatic.Label != null && (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE) && isKeyDown == false /*&& AnnoTierStatic.Label == null*/)
                     {
                         UIElement container = VisualTreeHelper.GetParent(AnnoTierStatic.Label) as UIElement;
                         Point relativeLocation = AnnoTierStatic.Label.TranslatePoint(new Point(0, 0), container);
@@ -237,7 +237,7 @@ namespace ssi
 
                 if (e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) && !isKeyDown)
                 {
-                    if (AnnoTierStatic.Selected != null && !AnnoTierStatic.Selected.isDiscreteOrFree)
+                    if (AnnoTierStatic.Selected != null && !(AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                     {
                         AnnoTierStatic.Selected.ContinuousAnnoMode();
                     }
@@ -273,7 +273,7 @@ namespace ssi
                     e.Handled = true;
                 }
 
-                if (e.KeyboardDevice.IsKeyDown(Key.C) && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) && AnnoTierStatic.Selected != null && AnnoTierStatic.Selected.isDiscreteOrFree)
+                if (e.KeyboardDevice.IsKeyDown(Key.C) && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) && AnnoTierStatic.Selected != null && (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                 {
                     if (AnnoTierStatic.Label != null)
                     {
@@ -284,7 +284,7 @@ namespace ssi
                     e.Handled = true;
                 }
 
-                if (e.KeyboardDevice.IsKeyDown(Key.X) && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) && AnnoTierStatic.Selected != null && AnnoTierStatic.Selected.isDiscreteOrFree)
+                if (e.KeyboardDevice.IsKeyDown(Key.X) && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) && AnnoTierStatic.Selected != null && (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                 {
                     if (AnnoTierStatic.Label != null)
                     {
@@ -295,7 +295,7 @@ namespace ssi
                     e.Handled = true;
                 }
 
-                if (e.KeyboardDevice.IsKeyDown(Key.V) && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) && AnnoTierStatic.Selected != null && AnnoTierStatic.Selected.isDiscreteOrFree)
+                if (e.KeyboardDevice.IsKeyDown(Key.V) && e.KeyboardDevice.IsKeyDown(Key.LeftCtrl) && AnnoTierStatic.Selected != null && (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                 {
                     if (AnnoTierStatic.Selected != null)
                     {
@@ -435,7 +435,7 @@ namespace ssi
 
                 if (e.KeyboardDevice.IsKeyDown(Key.E) && !isKeyDown)
                 {
-                    if (AnnoTierStatic.Label != null && AnnoTierStatic.Selected.isDiscreteOrFree && isKeyDown == false)
+                    if (AnnoTierStatic.Label != null && (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE) && isKeyDown == false)
                     {
                         UIElement container = VisualTreeHelper.GetParent(AnnoTierStatic.Label) as UIElement;
                         Point relativeLocation = AnnoTierStatic.Label.TranslatePoint(new Point(0, 0), container);
@@ -454,7 +454,7 @@ namespace ssi
 
                 if (e.KeyboardDevice.IsKeyDown(Key.Q) && !isKeyDown)
                 {
-                    if (AnnoTierStatic.Label != null && AnnoTierStatic.Selected.isDiscreteOrFree && isKeyDown == false)
+                    if (AnnoTierStatic.Label != null && (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE) && isKeyDown == false)
                     {
                         UIElement container = VisualTreeHelper.GetParent(AnnoTierStatic.Label) as UIElement;
                         Point relativeLocation = AnnoTierStatic.Label.TranslatePoint(new Point(0, 0), container);
@@ -471,7 +471,7 @@ namespace ssi
                     }
                 }
 
-                if ((e.KeyboardDevice.IsKeyDown(Key.W) || !isKeyDown && AnnoTierStatic.Selected != null) && AnnoTierStatic.Selected.isDiscreteOrFree)
+                if ((e.KeyboardDevice.IsKeyDown(Key.W) || !isKeyDown && AnnoTierStatic.Selected != null) && (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                 {
                     if (AnnoTierStatic.Label == null)
                     {
@@ -485,7 +485,7 @@ namespace ssi
                     isKeyDown = true;
                     // e.Handled = true;
                 }
-                else if ((e.KeyboardDevice.IsKeyDown(Key.W) || !isKeyDown && AnnoTierStatic.Selected != null) && !AnnoTierStatic.Selected.isDiscreteOrFree)
+                else if ((e.KeyboardDevice.IsKeyDown(Key.W) || !isKeyDown && AnnoTierStatic.Selected != null) && !(AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
                 {
                     if (AnnoTierStatic.Label != null)
                     {

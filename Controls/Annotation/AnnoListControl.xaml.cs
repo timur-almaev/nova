@@ -28,7 +28,7 @@ namespace ssi
 
         private void MenuItemDeleteClick(object sender, RoutedEventArgs e)
         {
-            if (AnnoTierStatic.Selected.isDiscreteOrFree)
+            if (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
             {
                 if (annoDataGrid.SelectedItems.Count > 0)
                 {

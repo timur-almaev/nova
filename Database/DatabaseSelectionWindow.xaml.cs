@@ -97,7 +97,7 @@ namespace ssi
 
                     schemeType = annoTier.AnnoList.Scheme.Type;
 
-                    if (annoTier.isDiscreteOrFree)
+                    if (annoTier.currentAnnoType == AnnoScheme.TYPE.FREE || annoTier.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
                     {
                         usedlabels = new HashSet<AnnoScheme.Label>();
 
