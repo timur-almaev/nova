@@ -182,15 +182,8 @@ namespace ssi
             AllowDrop = true;            
             SizeChanged += new SizeChangedEventHandler(sizeChanged);
 
-            if (anno.Scheme.Type == AnnoScheme.TYPE.DISCRETE || anno.Scheme.Type == AnnoScheme.TYPE.FREE)
-            {
-                currentAnnoType = AnnoScheme.TYPE.FREE;
-            }
-            else
-            {
-                currentAnnoType = AnnoScheme.TYPE.CONTINUOUS;
-            }
-            
+            currentAnnoType = anno.Scheme.Type;
+           
             UnDoObject = new AnnoTierUndoRedo();
             UnDoObject.Container = this;
 

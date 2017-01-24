@@ -56,6 +56,10 @@ namespace ssi
             }
             if (double.TryParse(numPointsTextBox.Text, out value))
             {
+                if (value <= 0)
+                {
+                    value = 1;
+                }
                 result.MinScore = value;
             }
             result.MinOrBackColor = colorPicker.SelectedColor.Value;

@@ -131,7 +131,7 @@ namespace ssi
                             }
                             else if (annoType == AnnoScheme.TYPE.POINT)
                             {
-                                AnnoTierNewPointSchemeWindow.Input input = new AnnoTierNewPointSchemeWindow.Input() { SampleRate = defaultSr, NumPoints = 0.0, Color = Colors.Green};
+                                AnnoTierNewPointSchemeWindow.Input input = new AnnoTierNewPointSchemeWindow.Input() { SampleRate = defaultSr, NumPoints = 1.0, Color = Colors.Green};
                                 AnnoTierNewPointSchemeWindow dialog2 = new AnnoTierNewPointSchemeWindow(input);
                                 dialog2.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                                 dialog2.ShowDialog();
@@ -142,7 +142,7 @@ namespace ssi
                             }
                             else if (annoType == AnnoScheme.TYPE.POLYGON)
                             {
-                                AnnoTierNewPolygonSchemeWindow.Input input = new AnnoTierNewPolygonSchemeWindow.Input() { SampleRate = defaultSr, NumNodes = 0.0, NodeColour = Colors.Green, LineColour = Colors.Red };
+                                AnnoTierNewPolygonSchemeWindow.Input input = new AnnoTierNewPolygonSchemeWindow.Input() { SampleRate = defaultSr, NumNodes = 1.0, NodeColour = Colors.Green, LineColour = Colors.Red };
                                 AnnoTierNewPolygonSchemeWindow dialog2 = new AnnoTierNewPolygonSchemeWindow(input);
                                 dialog2.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                                 dialog2.ShowDialog();
@@ -153,7 +153,7 @@ namespace ssi
                             }
                             else if (annoType == AnnoScheme.TYPE.GRPAH)
                             {
-                                AnnoTierNewGraphSchemeWindow.Input input = new AnnoTierNewGraphSchemeWindow.Input() { SampleRate = defaultSr, NumNodes = 0.0, NodeColour = Colors.Green, LineColour = Colors.Red };
+                                AnnoTierNewGraphSchemeWindow.Input input = new AnnoTierNewGraphSchemeWindow.Input() { SampleRate = defaultSr, NumNodes = 1.0, NodeColour = Colors.Green, LineColour = Colors.Red };
                                 AnnoTierNewGraphSchemeWindow dialog2 = new AnnoTierNewGraphSchemeWindow(input);
                                 dialog2.WindowStartupLocation = WindowStartupLocation.CenterScreen;
                                 dialog2.ShowDialog();

@@ -135,6 +135,7 @@
     <Compile Include="Controls\Navigation\TimeRangeSlider.xaml.cs">
       <DependentUpon>TimeRangeSlider.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Types\Point.cs" />
     <Compile Include="Types\SignalFile.cs" />
     <Page Include="App\App.xaml">
       <Generator>MSBuild:Compile</Generator>

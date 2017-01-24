@@ -12,7 +12,18 @@ namespace ssi
         private string meta;
         private Color color;
         private double confidence;
+        private bool geometric;
 
+        public bool Geometric
+        {
+            get { return geometric; }
+            set
+            {
+                geometric = value;
+                OnPropertyChanged("Geometric");
+            }
+        }
+        
         public double Start
         {
             get { return start; }
@@ -102,6 +113,7 @@ namespace ssi
         {
             int IComparer<AnnoListItem>.Compare(AnnoListItem a, AnnoListItem b)
             {
+                //if ()
                 if (a.start < b.start)
                 {
                     return -1;

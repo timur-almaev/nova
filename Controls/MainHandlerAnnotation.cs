@@ -258,17 +258,15 @@ namespace ssi
             annoTiers.Add(tier);
             annoLists.Add(anno);
 
-            if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.CONTINUOUS || tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.POINT ||
-                tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.POLYGON || tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.GRPAH ||
-                tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.SEGMENTATION)
-            {
-                tier.Background = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
-                tier.ContinuousBrush = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
-            }
-            else
+            if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.FREE || tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.DISCRETE)
             {
                 tier.Background = new SolidColorBrush(tier.AnnoList.Scheme.MinOrBackColor);
                 tier.BackgroundBrush = new SolidColorBrush(tier.AnnoList.Scheme.MinOrBackColor);
+            }
+            else
+            {
+                tier.Background = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
+                tier.ContinuousBrush = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
             }
 
             AnnoTierStatic.SelectTier(tier);
