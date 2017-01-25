@@ -22,11 +22,13 @@
         </StackPanel>
 
         <StackPanel Grid.Column="1" Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Center">
-            <Button Name="jumpFrontButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True">|&lt;</Button>
-            <Button Name="fastBackwardButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True">&lt;&lt;</Button>
-            <Button Name="playButton" Width="70" Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="False">></Button>
-            <Button Name="fastForwardButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True">>></Button>
-            <Button Name="jumpEndButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True">&gt;|</Button>
+            <Button Name="jumpFrontButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True" ToolTip="Jump Start">|&lt;</Button>
+            <Button Name="fastBackwardButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True" ToolTip="Rewind">&lt;&lt;</Button>
+            <Button Name="frameBackwardButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True" ToolTip="Previous Frame">&lt;-</Button>
+            <Button Name="playButton" Width="70" Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="False" ToolTip="Play / Pause">></Button>
+            <Button Name="frameForwardButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True" ToolTip="Next Frame">-&gt;</Button>
+            <Button Name="fastForwardButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True" ToolTip="Fastforward">>></Button>
+            <Button Name="jumpEndButton" Width="70"  Height="25" Margin="5" VerticalAlignment="Center" IsEnabled="True" ToolTip="Jump End">&gt;|</Button>
             <CheckBox x:Name="followAnnoCheckBox" Height="25" Margin="0,10,10,0" IsChecked="False" Content="Follow Annotation" />
         </StackPanel>
 

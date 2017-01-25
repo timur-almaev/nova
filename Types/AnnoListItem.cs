@@ -13,6 +13,7 @@ namespace ssi
         private Color color;
         private double confidence;
         private bool geometric;
+        private Types.Point[] points;
 
         public bool Geometric
         {
@@ -21,6 +22,26 @@ namespace ssi
             {
                 geometric = value;
                 OnPropertyChanged("Geometric");
+            }
+        }
+
+        public Types.Point[] Points
+        {
+            get
+            {
+                if (geometric && points.Length > 0)
+                {
+                    return points;
+                }
+                else
+                {
+                    return null;
+                }
+            }
+            set
+            {
+                points = value;
+                OnPropertyChanged("Points");
             }
         }
         
@@ -99,7 +120,8 @@ namespace ssi
             }
         }
 
-        public AnnoListItem(double start, double duration, string label, string meta = "", Color color = new Color(), double confidence = 1.0)
+        public AnnoListItem(double start, double duration, string label, string meta = "", Color color = new Color(), double confidence = 1.0, 
+                            bool geometric = false, Types.Point[] points = null)
         {
             this.start = Math.Max(0, start);
             this.duration = Math.Max(0, duration);
@@ -107,6 +129,14 @@ namespace ssi
             this.meta = meta;
             this.color = color;
             this.confidence = confidence;
+            this.geometric = geometric;
+            if (geometric)
+            {
+                if (points != null)
+                {
+                    this.points = points;
+                }
+            }
         }
 
         public class AnnoListItemComparer : IComparer<AnnoListItem>

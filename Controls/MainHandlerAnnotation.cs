@@ -117,8 +117,19 @@ namespace ssi
                     control.annoListControl.editComboBox.IsEnabled = false;
                     control.annoListControl.editTextBox.IsEnabled = false;
                 }
+                else if (AnnoTierStatic.Selected.AnnoList.Scheme.Type == AnnoScheme.TYPE.POINT)
+                {
+                    control.annoListControl.editButton.Visibility = Visibility.Collapsed;
+                    control.annoListControl.editComboBox.Visibility = Visibility.Collapsed;
+                    control.annoListControl.editTextBox.Visibility = Visibility.Collapsed;
+                    control.annoListControl.editComboBox.IsEnabled = false;
+                    control.annoListControl.editTextBox.IsEnabled = false;
 
-                control.annoListControl.editComboBox.Items.Clear();
+                    control.viewGridCol3.Width = new GridLength(200, GridUnitType.Pixel);
+                    control.myGridRow3.Height = new GridLength(100, GridUnitType.Pixel);
+                }
+
+                    control.annoListControl.editComboBox.Items.Clear();
                 if (AnnoTierStatic.Selected.AnnoList.Scheme.Type == AnnoScheme.TYPE.DISCRETE)
                 {
                     control.annoListControl.editComboBox.IsEnabled = true;
