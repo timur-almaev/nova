@@ -225,38 +225,41 @@ namespace ssi
             {
                 Loaded += delegate
                 {
-                    InitContinousValues(anno.Scheme.SampleRate);
-                    dispatcherTimer.Interval = TimeSpan.FromMilliseconds(20);
-                    dispatcherTimer.Tick += new EventHandler(delegate (object s, EventArgs a)
-                  {
-                      if (continuousAnnoMode && this.isSelected)
+                    if (currentAnnoType == AnnoScheme.TYPE.CONTINUOUS)
+                    {
+                        InitContinousValues(anno.Scheme.SampleRate);
+                        dispatcherTimer.Interval = TimeSpan.FromMilliseconds(20);
+                        dispatcherTimer.Tick += new EventHandler(delegate (object s, EventArgs a)
                       {
-                          double closestposition = MainHandler.Time.CurrentPlayPosition;
-                          closestIndex = GetClosestContinuousIndex(closestposition);
-                          if (closestIndex > -1)
+                          if (continuousAnnoMode && this.isSelected)
                           {
-                              if (this == Mouse.DirectlyOver || (Mouse.GetPosition(this).Y > 0 && Mouse.GetPosition(this).Y < this.ActualHeight && continuousTierEllipse == Mouse.DirectlyOver))
+                              double closestposition = MainHandler.Time.CurrentPlayPosition;
+                              closestIndex = GetClosestContinuousIndex(closestposition);
+                              if (closestIndex > -1)
                               {
-                                  double normal = 1.0 - (Mouse.GetPosition(this).Y / this.ActualHeight);
-                                  double normalized = (normal * range) + anno.Scheme.MinScore;
-
-                                  continuousTierEllipse.Height = this.ActualHeight / 10;
-                                  continuousTierEllipse.Width = continuousTierEllipse.Height;
-                                  continuousTierEllipse.SetValue(Canvas.TopProperty, (Mouse.GetPosition(this).Y - continuousTierEllipse.Height / 2));
-                                  AnnoList[closestIndex].Label = (normalized).ToString();
-
-                                  for (int i = closestIndexOld; i < closestIndex; i++)
+                                  if (this == Mouse.DirectlyOver || (Mouse.GetPosition(this).Y > 0 && Mouse.GetPosition(this).Y < this.ActualHeight && continuousTierEllipse == Mouse.DirectlyOver))
                                   {
-                                      if (closestIndexOld > -1) AnnoList[i].Label = (normalized).ToString();
-                                  }
-                                  closestIndexOld = closestIndex;
+                                      double normal = 1.0 - (Mouse.GetPosition(this).Y / this.ActualHeight);
+                                      double normalized = (normal * range) + anno.Scheme.MinScore;
 
-                                  TimeRangeChanged(MainHandler.Time);
+                                      continuousTierEllipse.Height = this.ActualHeight / 10;
+                                      continuousTierEllipse.Width = continuousTierEllipse.Height;
+                                      continuousTierEllipse.SetValue(Canvas.TopProperty, (Mouse.GetPosition(this).Y - continuousTierEllipse.Height / 2));
+                                      AnnoList[closestIndex].Label = (normalized).ToString();
+
+                                      for (int i = closestIndexOld; i < closestIndex; i++)
+                                      {
+                                          if (closestIndexOld > -1) AnnoList[i].Label = (normalized).ToString();
+                                      }
+                                      closestIndexOld = closestIndex;
+
+                                      TimeRangeChanged(MainHandler.Time);
+                                  }
                               }
                           }
-                      }
-                      else continuousTierEllipse.Visibility = Visibility.Hidden;
-                  });
+                          else continuousTierEllipse.Visibility = Visibility.Hidden;
+                      });
+                    }
                 };
             }
             selectedTier = this;
