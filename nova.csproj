@@ -136,6 +136,9 @@
       <DependentUpon>TimeRangeSlider.xaml</DependentUpon>
     </Compile>
     <Compile Include="Types\Point.cs" />
+    <Compile Include="Controls\Other\QuestionBoxThreeButtons.xaml.cs">
+      <DependentUpon>QuestionBoxThreeButtons.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Types\SignalFile.cs" />
     <Page Include="App\App.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -326,6 +329,10 @@
     <Page Include="Controls\Annotation\AnnoTierNewWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
+    </Page>
+    <Page Include="Controls\Other\QuestionBoxThreeButtons.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="Controls\Other\UserInputWindow.xaml">
       <SubType>Designer</SubType>
