@@ -872,7 +872,6 @@ namespace ssi
 
         #region EVENTHANDLER
 
-<<<<<<< HEAD
         private void saveAnno_Click(object sender, RoutedEventArgs e)
         {
             saveAnno();
