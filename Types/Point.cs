@@ -11,6 +11,7 @@ namespace ssi.Types
         private double x;
         private double y;
         private string label;
+        private double confidence;
 
         private double X
         {
@@ -42,11 +43,22 @@ namespace ssi.Types
             }
         }
 
-        public Point(double x, double y, string label)
+        private double Confidence
+        {
+            get { return confidence; }
+            set
+            {
+                confidence = value;
+                OnPropertyChanged("Confidence");
+            }
+        }
+
+        public Point(double x, double y, string label, double confidence)
         {
             this.x = x;
             this.y = y;
             this.label = label;
+            this.confidence = confidence;
         }
 
         public class PointComparer : IComparer<Point>

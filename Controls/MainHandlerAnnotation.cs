@@ -109,6 +109,54 @@ namespace ssi
 
             if (AnnoTierStatic.Selected != null)
             {
+                double width = control.viewGridCol3.ActualWidth + control.viewGridCol1.ActualWidth;
+                double col1MinWidth = Convert.ToDouble(control.viewGridCol1.MinWidth.ToString());
+                double col3MinWidth = Convert.ToDouble(control.viewGridCol3.MinWidth.ToString());
+
+
+                double height = control.myGridRow3.ActualHeight + control.myGridRow1.ActualHeight;
+                double row1MinHeight = Convert.ToDouble(control.myGridRow1.MinHeight.ToString());
+                double row3MinHeight = Convert.ToDouble(control.myGridRow3.MinHeight.ToString());
+
+                if (AnnoTierStatic.Selected.AnnoList.Scheme.Type == AnnoScheme.TYPE.POINT ||
+                    AnnoTierStatic.Selected.AnnoList.Scheme.Type == AnnoScheme.TYPE.POLYGON ||
+                    AnnoTierStatic.Selected.AnnoList.Scheme.Type == AnnoScheme.TYPE.GRPAH ||
+                    AnnoTierStatic.Selected.AnnoList.Scheme.Type == AnnoScheme.TYPE.SEGMENTATION)
+                {
+                    control.geometricListControl.Visibility = Visibility.Visible;
+                    control.ListGridCol3.MinWidth = 150;
+                    control.ListGridCol3.Width = new GridLength(1, GridUnitType.Star);
+                    control.ListGridSplitter.Visibility = Visibility.Visible;
+
+                    control.viewGridCol3.Width = new GridLength(col3MinWidth, GridUnitType.Pixel);
+                    control.viewGridCol3.MaxWidth = width - col1MinWidth;
+                    control.viewGridCol1.Width = new GridLength(1, GridUnitType.Star);
+                    control.viewGridCol1.MaxWidth = width - col3MinWidth;
+
+                    control.myGridRow3.Height = new GridLength(row3MinHeight, GridUnitType.Pixel);
+                    control.myGridRow3.MaxHeight = height - row1MinHeight;
+                    control.myGridRow1.Height = new GridLength(1, GridUnitType.Star);
+                    control.myGridRow1.MaxHeight = height - row3MinHeight;
+                }
+                else
+                {
+                    control.geometricListControl.Visibility = Visibility.Collapsed;
+                    control.ListGridCol3.MinWidth = 0;
+                    control.ListGridCol3.Width = new GridLength(0, GridUnitType.Star);
+                    control.ListGridSplitter.Visibility = Visibility.Collapsed;
+
+                    control.viewGridCol3.Width = new GridLength(1, GridUnitType.Star);
+                    control.viewGridCol3.MaxWidth = width - col1MinWidth;
+                    control.viewGridCol1.Width = new GridLength(col1MinWidth, GridUnitType.Pixel);
+                    control.viewGridCol1.MaxWidth = width - col3MinWidth;
+
+                    control.myGridRow3.Height = new GridLength(1, GridUnitType.Star);
+                    control.myGridRow3.MaxHeight = height - row1MinHeight;
+                    control.myGridRow1.Height = new GridLength(row1MinHeight, GridUnitType.Pixel);
+                    control.myGridRow1.MaxHeight = height - row3MinHeight;
+
+                }
+
                 if (AnnoTierStatic.Selected.AnnoList.Scheme.Type == AnnoScheme.TYPE.CONTINUOUS)
                 {
                     control.annoListControl.editButton.Visibility = Visibility.Collapsed;
@@ -124,9 +172,6 @@ namespace ssi
                     control.annoListControl.editTextBox.Visibility = Visibility.Collapsed;
                     control.annoListControl.editComboBox.IsEnabled = false;
                     control.annoListControl.editTextBox.IsEnabled = false;
-
-                    control.viewGridCol3.Width = new GridLength(200, GridUnitType.Pixel);
-                    control.myGridRow3.Height = new GridLength(100, GridUnitType.Pixel);
                 }
 
                     control.annoListControl.editComboBox.Items.Clear();

@@ -516,7 +516,7 @@ namespace ssi
                     Types.Point[] points = new Types.Point[numPoints];
                     for (int j = 0; j < numPoints; ++j)
                     {
-                        points[j] = new Types.Point(0, 0, (j + 1).ToString());
+                        points[j] = new Types.Point(0, 0, (j + 1).ToString(), 0);
                     }
                     AnnoListItem ali = new AnnoListItem(i * delta, delta, "Frame " + (i + 1).ToString(), "", anno.Scheme.MinOrBackColor, 1, true, points);
                     AnnoList.Add(ali);

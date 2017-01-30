@@ -111,16 +111,19 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Controls\Annotation\AnnoTierNewGraphSchemeWindow.xaml.cs">
+    <Compile Include="Controls\Annotation\Geometric\GeometricListControl.xaml.cs">
+      <DependentUpon>GeometricListControl.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Controls\Annotation\Geometric\AnnoTierNewGraphSchemeWindow.xaml.cs">
       <DependentUpon>AnnoTierNewGraphSchemeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Annotation\AnnoTierNewPointSchemeWindow.xaml.cs">
+    <Compile Include="Controls\Annotation\Geometric\AnnoTierNewPointSchemeWindow.xaml.cs">
       <DependentUpon>AnnoTierNewPointSchemeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Annotation\AnnoTierNewPolygonSchemeWindow.xaml.cs">
+    <Compile Include="Controls\Annotation\Geometric\AnnoTierNewPolygonSchemeWindow.xaml.cs">
       <DependentUpon>AnnoTierNewPolygonSchemeWindow.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Controls\Annotation\AnnoTierNewSegmentationSchemeWindow.xaml.cs">
+    <Compile Include="Controls\Annotation\Geometric\AnnoTierNewSegmentationSchemeWindow.xaml.cs">
       <DependentUpon>AnnoTierNewSegmentationSchemeWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\MainHandlerAnnotation.cs" />
@@ -198,6 +201,10 @@
     <Compile Include="Types\AnnoListFile.cs" />
     <Compile Include="Types\AnnoScheme.cs" />
     <Compile Include="Tools\FileTools.cs" />
+    <Page Include="Controls\Annotation\Geometric\GeometricListControl.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Controls\Annotation\AnnoListControl.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -214,19 +221,19 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Annotation\AnnoTierNewGraphSchemeWindow.xaml">
+    <Page Include="Controls\Annotation\Geometric\AnnoTierNewGraphSchemeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Annotation\AnnoTierNewPointSchemeWindow.xaml">
+    <Page Include="Controls\Annotation\Geometric\AnnoTierNewPointSchemeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Annotation\AnnoTierNewPolygonSchemeWindow.xaml">
+    <Page Include="Controls\Annotation\Geometric\AnnoTierNewPolygonSchemeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Controls\Annotation\AnnoTierNewSegmentationSchemeWindow.xaml">
+    <Page Include="Controls\Annotation\Geometric\AnnoTierNewSegmentationSchemeWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
