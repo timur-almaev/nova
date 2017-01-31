@@ -138,7 +138,9 @@
     <Compile Include="Controls\Navigation\TimeRangeSlider.xaml.cs">
       <DependentUpon>TimeRangeSlider.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Types\Point.cs" />
+    <Compile Include="Interfaces\IPointList.cs" />
+    <Compile Include="Types\PointList.cs" />
+    <Compile Include="Types\PointListItem.cs" />
     <Compile Include="Controls\Other\QuestionBoxThreeButtons.xaml.cs">
       <DependentUpon>QuestionBoxThreeButtons.xaml</DependentUpon>
     </Compile>

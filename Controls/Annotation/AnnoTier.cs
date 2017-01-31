@@ -513,10 +513,10 @@ namespace ssi
             {
                 for (int i = AnnoList.Count; i < samples; i++)
                 {
-                    Types.Point[] points = new Types.Point[numPoints];
+                    PointList points = new PointList();
                     for (int j = 0; j < numPoints; ++j)
                     {
-                        points[j] = new Types.Point(0, 0, (j + 1).ToString(), 0);
+                        points.Add(new Types.PointListItem(0, 0, (j + 1).ToString(), 0));
                     }
                     AnnoListItem ali = new AnnoListItem(i * delta, delta, "Frame " + (i + 1).ToString(), "", anno.Scheme.MinOrBackColor, 1, true, points);
                     AnnoList.Add(ali);

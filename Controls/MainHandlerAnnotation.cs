@@ -86,6 +86,18 @@ namespace ssi
         private void setAnnoList(AnnoList anno)
         {
             control.annoListControl.annoDataGrid.ItemsSource = anno;
+            if (anno != null && anno.Count > 0)
+            {
+                if (anno[0].Geometric)
+                {
+                    control.geometricListControl.geometricDataGrid.ItemsSource = anno[0].Points;
+                }
+            }
+        }
+
+        private void setPointList(PointList pl)
+        {
+            //control.geometricListControl.geometricDataGrid.ItemsSource = pl;
         }
 
         private string buildAnnoNameLabel(AnnoList AnnoList)
@@ -105,6 +117,7 @@ namespace ssi
         {
             control.annoNameLabel.Content = buildAnnoNameLabel(tier.AnnoList);
             setAnnoList(tier.AnnoList);
+            setPointList(null);
             control.annoListControl.editComboBox.Items.Clear();
 
             if (AnnoTierStatic.Selected != null)
@@ -305,6 +318,16 @@ namespace ssi
         public void addAnnoTier(AnnoList anno)
         {
             setAnnoList(anno);
+            if (anno.Scheme.Type == AnnoScheme.TYPE.POINT)
+            {
+                //anno.;
+                setPointList(null);
+            }
+            else
+            {
+                //setPointList(null);
+            }
+            
 
             AnnoTier tier = control.annoTrackControl.addAnnoTier(anno);
             tier.AnnoList.HasChanged = false;
@@ -345,6 +368,7 @@ namespace ssi
             if (anno != null && AnnoTierStatic.Selected != null)
             {
                 setAnnoList(anno);
+                setAnnoList(null);
                 AnnoTierStatic.Selected.Children.Clear();
                 AnnoTierStatic.Selected.AnnoList.Clear();
                 AnnoTierStatic.Selected.segments.Clear();
@@ -515,6 +539,8 @@ namespace ssi
                         break;
                     }
                 }
+
+                setPointList(item.Points);
 
                 movemedialock = false;
             }

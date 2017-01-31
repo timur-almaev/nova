@@ -348,6 +348,7 @@ namespace ssi
 
             this.signalCursor.X = 0;
             setAnnoList(null);
+            setPointList(null);
 
             control.annoTrackControl.clear();
             control.signalTrackControl.Clear();

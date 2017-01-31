@@ -6,14 +6,14 @@ using System.Threading.Tasks;
 
 namespace ssi.Types
 {
-    public class Point : IObservableListItem
+    public class PointListItem : IObservableListItem
     {
         private double x;
         private double y;
         private string label;
         private double confidence;
 
-        private double X
+        private double XCoord
         {
             get { return x; }
             set
@@ -23,7 +23,7 @@ namespace ssi.Types
             }
         }
 
-        private double Y
+        private double YCoord
         {
             get { return y; }
             set
@@ -53,7 +53,7 @@ namespace ssi.Types
             }
         }
 
-        public Point(double x, double y, string label, double confidence)
+        public PointListItem(double x, double y, string label, double confidence)
         {
             this.x = x;
             this.y = y;
@@ -61,9 +61,9 @@ namespace ssi.Types
             this.confidence = confidence;
         }
 
-        public class PointComparer : IComparer<Point>
+        public class PointListItemComparer : IComparer<PointListItem>
         {
-            int IComparer<Point>.Compare(Point a, Point b)
+            int IComparer<PointListItem>.Compare(PointListItem a, PointListItem b)
             {
 
 

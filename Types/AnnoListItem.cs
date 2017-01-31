@@ -13,7 +13,7 @@ namespace ssi
         private Color color;
         private double confidence;
         private bool geometric;
-        private Types.Point[] points;
+        private PointList points;
 
         public bool Geometric
         {
@@ -25,18 +25,11 @@ namespace ssi
             }
         }
 
-        public Types.Point[] Points
+        public PointList Points
         {
             get
             {
-                if (geometric && points.Length > 0)
-                {
-                    return points;
-                }
-                else
-                {
-                    return null;
-                }
+                return points;
             }
             set
             {
@@ -121,7 +114,7 @@ namespace ssi
         }
 
         public AnnoListItem(double start, double duration, string label, string meta = "", Color color = new Color(), double confidence = 1.0, 
-                            bool geometric = false, Types.Point[] points = null)
+                            bool geometric = false, PointList points = null)
         {
             this.start = Math.Max(0, start);
             this.duration = Math.Max(0, duration);
@@ -143,7 +136,6 @@ namespace ssi
         {
             int IComparer<AnnoListItem>.Compare(AnnoListItem a, AnnoListItem b)
             {
-                //if ()
                 if (a.start < b.start)
                 {
                     return -1;

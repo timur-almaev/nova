@@ -28,7 +28,8 @@ namespace ssi
 
         private void MenuItemDeleteClick(object sender, RoutedEventArgs e)
         {
-            if (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
+            ///impliment deltetion of points, ...
+            /*if (AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
             {
                 if (geometricDataGrid.SelectedItems.Count > 0)
                 {
@@ -46,125 +47,7 @@ namespace ssi
                         }
                     }
                 }
-            }
-        }
-
-        private void MenuItemCopyWithMetaClick(object sender, RoutedEventArgs e)
-        {
-            if (geometricDataGrid.SelectedItems.Count != 0)
-            {
-                var sb = new StringBuilder();
-                foreach (AnnoListItem s in geometricDataGrid.SelectedItems)
-                {
-                    sb.AppendLine("name=" + s.Label + ";from=" + s.Start + ";to=" + s.Stop + ";" + s.Meta.Replace('\n', ';'));
-                }
-                try
-                {
-                    System.Windows.Clipboard.SetData(DataFormats.Text, sb.ToString());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Unable to copy to the clipboard (" + ex.ToString() + ")");
-                }
-            }
-        }
-
-        private void MenuItemCopyWithoutMetaClick(object sender, RoutedEventArgs e)
-        {
-            if (geometricDataGrid.SelectedItems.Count != 0)
-            {
-                var sb = new StringBuilder();
-                foreach (AnnoListItem s in geometricDataGrid.SelectedItems)
-                {
-                    sb.AppendLine("name=" + s.Label + ";from=" + s.Start + ";to=" + s.Stop + ";");
-                }
-                try
-                {
-                    System.Windows.Clipboard.SetData(DataFormats.Text, sb.ToString());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Unable to copy to the clipboard (" + ex.ToString() + ")");
-                }
-            }
-        }
-
-        private void MenuItemCopyMetaOnlyClick(object sender, RoutedEventArgs e)
-        {
-            if (geometricDataGrid.SelectedItems.Count != 0)
-            {
-                var sb = new StringBuilder();
-                foreach (AnnoListItem s in geometricDataGrid.SelectedItems)
-                {
-                    sb.AppendLine(s.Meta.Replace('\n', ';'));
-                }
-                try
-                {
-                    System.Windows.Clipboard.SetData(DataFormats.Text, sb.ToString());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Unable to copy to the clipboard (" + ex.ToString() + ")");
-                }
-            }
-        }
-
-        private void MenuItemCopyMetaNumbersOnlyClick(object sender, RoutedEventArgs e)
-        {
-            if (geometricDataGrid.SelectedItems.Count != 0)
-            {
-                var sb = new StringBuilder();
-                foreach (AnnoListItem s in geometricDataGrid.SelectedItems)
-                {
-                    string[] split = Regex.Split(s.Meta, @"[=\n]");
-                    if (split.Length > 1)
-                    {
-                        sb.Append(split[1]);
-                        for (int i = 3; i < split.Length; i += 2)
-                        {
-                            sb.Append(";" + split[i]);
-                        }
-                        sb.AppendLine();
-                    }
-                }
-                try
-                {
-                    System.Windows.Clipboard.SetData(DataFormats.Text, sb.ToString());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Unable to copy to the clipboard (" + ex.ToString() + ")");
-                }
-            }
-        }
-
-        private void MenuItemCopyMetaStringsOnlyClick(object sender, RoutedEventArgs e)
-        {
-            if (geometricDataGrid.SelectedItems.Count != 0)
-            {
-                var sb = new StringBuilder();
-                foreach (AnnoListItem s in geometricDataGrid.SelectedItems)
-                {
-                    string[] split = Regex.Split(s.Meta, @"[=\n]");
-                    if (split.Length > 0)
-                    {
-                        sb.Append(split[0]);
-                        for (int i = 2; i < split.Length; i += 2)
-                        {
-                            sb.Append(";" + split[i]);
-                        }
-                        sb.AppendLine();
-                    }
-                }
-                try
-                {
-                    System.Windows.Clipboard.SetData(DataFormats.Text, sb.ToString());
-                }
-                catch (Exception ex)
-                {
-                    MessageBox.Show("Unable to copy to the clipboard (" + ex.ToString() + ")");
-                }
-            }
+            }*/
         }
 
         private void editTextBox_KeyDown(object sender, System.Windows.Input.KeyEventArgs e)
@@ -174,7 +57,11 @@ namespace ssi
         private void MenuItemSetConfidenceZeroClick(object sender, RoutedEventArgs e)
         {
             if (geometricDataGrid.SelectedItems.Count != 0)
-            {       
+            {
+                //if (geometricDataGrid.SelectedItem.GetType == Point)
+                {
+
+                }
                 foreach (AnnoListItem s in geometricDataGrid.SelectedItems)
                 {
                     s.Confidence = 0.0;
