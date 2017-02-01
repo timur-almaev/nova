@@ -58,7 +58,7 @@ namespace ssi
                         {
                             databaseStore();
                         }
-                        else saveAnno();
+                        else saveSelectedAnno();
 
                         at.AnnoList.HasChanged = false;
                     }
@@ -106,9 +106,9 @@ namespace ssi
             string annoNameLabel = "";
             if (AnnoList.Scheme.Name != null && AnnoList.Scheme.Name != "") annoNameLabel += "#" + AnnoList.Scheme.Name + " ";
             else annoNameLabel += "#NewTier ";
-            if (AnnoList.Role != null && AnnoList.Role != "") annoNameLabel += "#" + AnnoList.Role + " ";
-            if (AnnoList.AnnotatorFullName != null && AnnoList.AnnotatorFullName != "") annoNameLabel += "#" + AnnoList.AnnotatorFullName;
-            else if (AnnoList.Annotator != null && AnnoList.Annotator != "") annoNameLabel += "#" + AnnoList.Annotator;
+            if (AnnoList.Meta.Role != "") annoNameLabel += "#" + AnnoList.Meta.Role + " ";
+            if (AnnoList.Meta.AnnotatorFullName != "") annoNameLabel += "#" + AnnoList.Meta.AnnotatorFullName;
+            else if (AnnoList.Meta.Annotator != "") annoNameLabel += "#" + AnnoList.Meta.Annotator;
 
             return annoNameLabel;
         }
@@ -187,7 +187,7 @@ namespace ssi
                     control.annoListControl.editTextBox.IsEnabled = false;
                 }
 
-                    control.annoListControl.editComboBox.Items.Clear();
+                control.annoListControl.editComboBox.Items.Clear();
                 if (AnnoTierStatic.Selected.AnnoList.Scheme.Type == AnnoScheme.TYPE.DISCRETE)
                 {
                     control.annoListControl.editComboBox.IsEnabled = true;
@@ -337,15 +337,15 @@ namespace ssi
             annoTiers.Add(tier);
             annoLists.Add(anno);
 
-            if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.FREE || tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.DISCRETE)
-            {
-                tier.Background = new SolidColorBrush(tier.AnnoList.Scheme.MinOrBackColor);
-                tier.BackgroundBrush = new SolidColorBrush(tier.AnnoList.Scheme.MinOrBackColor);
-            }
-            else
+            if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.CONTINUOUS)
             {
                 tier.Background = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
                 tier.ContinuousBrush = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
+            }
+            else
+            {
+                tier.Background = new SolidColorBrush(tier.AnnoList.Scheme.MinOrBackColor);
+                tier.BackgroundBrush = new SolidColorBrush(tier.AnnoList.Scheme.MinOrBackColor);
             }
 
             AnnoTierStatic.SelectTier(tier);
