@@ -229,6 +229,16 @@ namespace ssi
             if (annos[0] != null && tier != null)
             {
                 setAnnoList(annos[0]);
+                if (annos[0] != null && annos[0].Count > 0)
+                {
+                    if (annos[0][0].Geometric)
+                    {
+                        if (annos[0].Scheme.Type == AnnoScheme.TYPE.POINT)
+                        {
+                            setPointList(annos[0][0].Points);
+                        }
+                    }
+                }
                 tier.Children.Clear();
                 tier.AnnoList.Clear();
                 tier.segments.Clear();

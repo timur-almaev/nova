@@ -94,9 +94,9 @@ namespace ssi
                 {
                     name = annoList.Scheme.Name;
 
-                    schemeType = annoTier.AnnoList.Scheme.Type;
+                    schemeType = annoList.Scheme.Type;
 
-                    if (annoTier.currentAnnoType == AnnoScheme.TYPE.FREE || annoTier.currentAnnoType == AnnoScheme.TYPE.DISCRETE)
+                    if (annoList.Scheme.Type == AnnoScheme.TYPE.FREE || annoList.Scheme.Type == AnnoScheme.TYPE.DISCRETE)
                     {
                         usedlabels = new HashSet<AnnoScheme.Label>();
 

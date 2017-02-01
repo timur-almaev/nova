@@ -86,18 +86,11 @@ namespace ssi
         private void setAnnoList(AnnoList anno)
         {
             control.annoListControl.annoDataGrid.ItemsSource = anno;
-            if (anno != null && anno.Count > 0)
-            {
-                if (anno[0].Geometric)
-                {
-                    control.geometricListControl.geometricDataGrid.ItemsSource = anno[0].Points;
-                }
-            }
         }
 
         private void setPointList(PointList pl)
         {
-            //control.geometricListControl.geometricDataGrid.ItemsSource = pl;
+            control.geometricListControl.geometricDataGrid.ItemsSource = pl;
         }
 
         private string buildAnnoNameLabel(AnnoList AnnoList)
@@ -117,7 +110,16 @@ namespace ssi
         {
             control.annoNameLabel.Content = buildAnnoNameLabel(tier.AnnoList);
             setAnnoList(tier.AnnoList);
-            setPointList(null);
+            if (tier.AnnoList != null && tier.AnnoList.Count > 0)
+            {
+                if (tier.AnnoList[0].Geometric)
+                {
+                    if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.POINT)
+                    {
+                        setPointList(tier.AnnoList[0].Points);
+                    }
+                }
+            }
             control.annoListControl.editComboBox.Items.Clear();
 
             if (AnnoTierStatic.Selected != null)
@@ -318,16 +320,16 @@ namespace ssi
         public void addAnnoTier(AnnoList anno)
         {
             setAnnoList(anno);
-            if (anno.Scheme.Type == AnnoScheme.TYPE.POINT)
+            if (anno != null && anno.Count > 0)
             {
-                //anno.;
-                setPointList(null);
+                if (anno[0].Geometric)
+                {
+                    if (anno.Scheme.Type == AnnoScheme.TYPE.POINT)
+                    {
+                        setPointList(anno[0].Points);
+                    }
+                }
             }
-            else
-            {
-                //setPointList(null);
-            }
-            
 
             AnnoTier tier = control.annoTrackControl.addAnnoTier(anno);
             tier.AnnoList.HasChanged = false;
@@ -337,15 +339,15 @@ namespace ssi
             annoTiers.Add(tier);
             annoLists.Add(anno);
 
-            if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.CONTINUOUS)
-            {
-                tier.Background = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
-                tier.ContinuousBrush = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
-            }
-            else
+            if (tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.FREE || tier.AnnoList.Scheme.Type == AnnoScheme.TYPE.DISCRETE)
             {
                 tier.Background = new SolidColorBrush(tier.AnnoList.Scheme.MinOrBackColor);
                 tier.BackgroundBrush = new SolidColorBrush(tier.AnnoList.Scheme.MinOrBackColor);
+            }
+            else
+            {
+                tier.Background = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
+                tier.ContinuousBrush = new LinearGradientBrush(tier.AnnoList.Scheme.MaxOrForeColor, tier.AnnoList.Scheme.MinOrBackColor, 90.0);
             }
 
             AnnoTierStatic.SelectTier(tier);
@@ -368,7 +370,16 @@ namespace ssi
             if (anno != null && AnnoTierStatic.Selected != null)
             {
                 setAnnoList(anno);
-                setAnnoList(null);
+                if (anno.Count > 0)
+                {
+                    if (anno[0].Geometric)
+                    {
+                        if (anno.Scheme.Type == AnnoScheme.TYPE.POINT)
+                        {
+                            setPointList(anno[0].Points);
+                        }
+                    }
+                }
                 AnnoTierStatic.Selected.Children.Clear();
                 AnnoTierStatic.Selected.AnnoList.Clear();
                 AnnoTierStatic.Selected.segments.Clear();
@@ -539,8 +550,13 @@ namespace ssi
                         break;
                     }
                 }
-
-                setPointList(item.Points);
+                if (item.Geometric)
+                {
+                    if (item.Points != null && item.Points.Count > 0)
+                    {
+                        setPointList(item.Points);
+                    }
+                }
 
                 movemedialock = false;
             }

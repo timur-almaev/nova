@@ -675,7 +675,7 @@ namespace ssi
         {
           
 
-            if (AnnoTierStatic.Selected != null && !AnnoTierStatic.Selected.isDiscreteOrFree)
+            if (AnnoTierStatic.Selected != null && !(AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.FREE || AnnoTierStatic.Selected.currentAnnoType == AnnoScheme.TYPE.DISCRETE))
             {
                 Dictionary<string, UserInputWindow.Input> input = new Dictionary<string, UserInputWindow.Input>();
                 input["labels"] = new UserInputWindow.Input() { Label = "Class labels (separated by ;)", DefaultValue = "LOW;MEDIUM;HIGH" };
