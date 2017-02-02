@@ -13,7 +13,7 @@ namespace ssi.Types
         private string label;
         private double confidence;
 
-        private double XCoord
+        public double XCoord
         {
             get { return x; }
             set
@@ -23,7 +23,7 @@ namespace ssi.Types
             }
         }
 
-        private double YCoord
+        public double YCoord
         {
             get { return y; }
             set
@@ -33,7 +33,7 @@ namespace ssi.Types
             }
         }
 
-        private string Label
+        public string Label
         {
             get { return label; }
             set
@@ -43,7 +43,7 @@ namespace ssi.Types
             }
         }
 
-        private double Confidence
+        public double Confidence
         {
             get { return confidence; }
             set
