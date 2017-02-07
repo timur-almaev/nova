@@ -28,7 +28,8 @@ namespace ssi
             Meta = new AnnoMeta();
         }
 
-        public bool Save(List<DatabaseMediaInfo> loadedMedia = null)
+        // public bool Save(List<DatabaseMediaInfo> loadedMedia = null)
+        public bool Save(string vfilename = "", List<DatabaseMediaInfo> loadedMedia = null)
         {
             bool saved = false;
 
@@ -50,7 +51,8 @@ namespace ssi
 
             if (!saved)
             {
-                string path = FileTools.SaveFileDialog(Scheme.Name, ".annotation", "Annotation(*.annotation)|*.annotation", "");
+                // string path = FileTools.SaveFileDialog(Scheme.Name, ".annotation", "Annotation(*.annotation)|*.annotation", "");
+                string path = FileTools.SaveFileDialog(vfilename, ".annotation", "Annotation(*.annotation)|*.annotation", "");
                 if (path != null)
                 {
                     Source.File.Path = path;

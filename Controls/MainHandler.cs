@@ -424,6 +424,25 @@ namespace ssi
                 loadMultipleFiles(filenames);
                 control.Cursor = Cursors.Arrow;
             }
+
+            AnnoList list;
+            list = new AnnoList();
+            list.Scheme = new AnnoScheme() { Type = AnnoScheme.TYPE.DISCRETE };
+            list.Scheme.Labels = new List<AnnoScheme.Label>();
+            list.Scheme.Type = AnnoScheme.TYPE.DISCRETE;
+            list.Scheme.Labels.Clear();
+
+            AnnoScheme.Label activeStage = new AnnoScheme.Label("ACTIVE", Colors.Green);
+            list.Scheme.Labels.Add(activeStage);
+
+            AnnoScheme.Label unknownStage = new AnnoScheme.Label("UNKNOWN", Colors.Red);
+            list.Scheme.Labels.Add(unknownStage);
+
+            list.Clear();
+            list.Scheme.MinOrBackColor = Colors.Beige;
+            list.Scheme.Name = "Activation";
+            addAnnoTier(list);
+
         }
 
         private void saveSession_Click(object sender, RoutedEventArgs e)

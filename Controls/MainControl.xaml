@@ -15,27 +15,27 @@
 
         <Menu Grid.Row="0" Background="Transparent">
             <MenuItem Header="File">
-                <MenuItem Header="Load" Name="loadMenu" />
-                <MenuItem Header="Save Project" Name="saveProjectMenu" />
-                <MenuItem Header="Save All" Name="saveSessionMenu" />
-                <MenuItem Header="Export">
+                <MenuItem Header="Load Video" Name="loadMenu" />
+                <MenuItem Header="Save Project" Name="saveProjectMenu" Visibility="Collapsed"/>
+                <MenuItem Header="Save Annotations" Name="saveSessionMenu" />
+                <MenuItem Header="Export" Visibility="Collapsed">
                     <MenuItem Header="SSI SampleList" Name="exportSamplesMenu" />
                     <MenuItem Header="Sampled Annotations" Name="exportAnnoToFrameWiseMenu" />
                 </MenuItem>
-                <MenuItem Header="Settings" Name="showSettingsMenu" />
-                <MenuItem Header="Clear" Name="clearSessionMenu" />
+                <MenuItem Header="Settings" Name="showSettingsMenu" Visibility="Collapsed"/>
+                <MenuItem Header="Clear Workflow" Name="clearSessionMenu" />
             </MenuItem>
             <MenuItem Header="Tier" Name="tierMenu">
-                <MenuItem Header="Save selected tier" Name="saveAnnoMenu" IsEnabled="False" />
-                <MenuItem Header="Convert to discrete" Name="exportAnnoContinuousToDiscreteMenu" IsEnabled="False" />
-                <MenuItem Header="Convert to stream" Name="exportAnnoToSignalMenu" IsEnabled="False" />
+                <MenuItem Header="Save selected tier" Name="saveAnnoMenu" IsEnabled="False" Visibility="Collapsed" />
+                <MenuItem Header="Convert to discrete" Name="exportAnnoContinuousToDiscreteMenu" IsEnabled="False" Visibility="Collapsed" />
+                <MenuItem Header="Convert to stream" Name="exportAnnoToSignalMenu" IsEnabled="False" Visibility="Collapsed"/>
                 <MenuItem Header="Export" Name="export">
                     <MenuItem Header="Export to CSV" Name="exportAnnoToCSVMenu" IsEnabled="True" />
                     <MenuItem Header="Export to XPS" Name="exportTierToXPSMenu" IsEnabled="True" />
                     <MenuItem Header="Export to PNG" Name="exportTierToPNGMenu" IsEnabled="True" />
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Signal">
+            <MenuItem Header="Signal" Visibility="Collapsed">
                 <!--<MenuItem Header="Calculate Praat features" Name="calculatepraat" />-->
                 <MenuItem Header="Convert to Continuous Tier" Name="exportAnnoDiscreteToContinuouMenu" />
                 <MenuItem Header="Export" Name="exports">
@@ -43,7 +43,7 @@
                     <MenuItem Header="Export to PNG" Name="exportSignalToPNGMenu" IsEnabled="True" />
                 </MenuItem>
             </MenuItem>
-            <MenuItem Header="Database">
+            <MenuItem Header="Database" Visibility="Collapsed">
                 <!--<MenuItem Header="Calculate Praat features" Name="calculatepraat" />-->
                 <MenuItem Header="Load Session" Name="databaseLoadSessionMenu" />
                 <MenuItem Header="Store Session" Name="databaseSaveSessionMenu" IsEnabled="False" />

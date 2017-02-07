@@ -14,6 +14,8 @@ namespace ssi
 {
     public partial class MainHandler
     {
+        string vfilename = "";
+
         #region LOAD
 
         public void loadMultipleFiles(string[] filenames, string[] url = null)
@@ -133,6 +135,7 @@ namespace ssi
             {
                 case SSI_FILE_TYPE.VIDEO:
                     loadMedia(filename, true, url);
+                    this.vfilename = Path.GetFileNameWithoutExtension(filename);
                     loaded = true;
                     break;
 
@@ -410,14 +413,17 @@ namespace ssi
 
         #region SAVE
 
+        // Ctrl+S
         private void saveSelectedAnno()
         {
             if (AnnoTierStatic.Selected != null && AnnoTierStatic.Selected.AnnoList != null)
             {
-                AnnoTierStatic.Selected.AnnoList.Save();
+                // AnnoTierStatic.Selected.AnnoList.Save();
+                AnnoTierStatic.Selected.AnnoList.Save(this.vfilename);
             }
         }
 
+        // Ctrl+Shift+S
         private void saveSelectedAnnoAs()
         {
             if (AnnoTierStatic.Selected.AnnoList != null)
@@ -426,11 +432,13 @@ namespace ssi
                 if (path != null)
                 {
                     AnnoTierStatic.Selected.AnnoList.Source.File.Path = path;
-                    AnnoTierStatic.Selected.AnnoList.Save();
+                    // AnnoTierStatic.Selected.AnnoList.Save();
+                    AnnoTierStatic.Selected.AnnoList.Save(this.vfilename);
                 }
             }
         }
 
+        // File->Save All
         private void saveAnnos()
         {
             bool anyTierChanged = false;
@@ -445,7 +453,8 @@ namespace ssi
                 {
                     if (tier.AnnoList.HasChanged)
                     {
-                        tier.AnnoList.Save();
+                        // tier.AnnoList.Save();
+                        tier.AnnoList.Save(this.vfilename);
                     }
                 }
             }

@@ -17,7 +17,7 @@
         </Grid.RowDefinitions>
 
         <StackPanel Grid.Column="0" Orientation="Horizontal" FlowDirection="LeftToRight" HorizontalAlignment="Left">
-            <Button Name="newAnnoButton" Width="80" Height="25" Margin="5" VerticalAlignment="Center">New  Tier</Button>
+            <Button Name="newAnnoButton" Width="80" Height="25" Margin="5" VerticalAlignment="Center" Visibility="Collapsed">New  Tier</Button>
             <Button Name="newAnnoContButton" Width="120" Height="25" Margin="5" Visibility="Collapsed" VerticalAlignment="Center">New Continuous Tier</Button>
         </StackPanel>
 
@@ -34,7 +34,7 @@
             <CheckBox Name="followplaybox" Height="25" Margin="0,10,10,0" IsChecked="True" Content="Auto Scroll" />
             <CheckBox x:Name="askforlabels" Height="25" Margin="0,10,10,0" IsChecked="False" Content="Force Label" />
             <CheckBox Name="correctionModeCheckBox" Height="25" Margin="0,10,10,0" Visibility="Visible">Correction Mode</CheckBox>
-            <Button Name="clearButton" Width="70" Height="25" Margin="5" VerticalAlignment="Center">Clear</Button>
+            <Button Name="clearButton" Width="70" Height="25" Margin="5" VerticalAlignment="Center" Visibility="Collapsed">Clear</Button>
         </StackPanel>
 
         <Label Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="4" Content="" Name="Statusbar" Margin="5,0,0,0" HorizontalContentAlignment="Left" BorderThickness="0" />
